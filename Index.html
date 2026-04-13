@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swoop Dog Waste Removal</title>
+  <style>
+    .brand img { height:42px; width:auto; object-fit:contain; }
+    .hero-logo { height:80px; width:auto; object-fit:contain; display:block; }
+    .quote-form { display:flex; gap:10px; margin-top:20px; }
+    .quote-form input { padding:14px; border-radius:999px; border:1px solid #ccc; flex:1; font-size:16px; }
+
+    :root {
+      --navy: #17324d;
+      --sky: #8fb9d4;
+      --sand: #f3eee6;
+      --cream: #fbf8f3;
+      --text: #213547;
+      --muted: #5b6b78;
+      --accent: #2b6f95;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(23, 50, 77, 0.14);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(251, 248, 243, 0.88);
+      border-bottom: 1px solid rgba(23, 50, 77, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: var(--navy);
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--navy), var(--accent));
+      color: var(--white);
+      box-shadow: var(--shadow);
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .button-primary {
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .button-primary:hover { transform: translateY(-1px); }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.75);
+      color: var(--navy);
+      border-color: rgba(23, 50, 77, 0.12);
+    }
+
+    .hero {
+      padding: 48px 0 36px;
+    }
+
+    .hero-card {
+      min-height: 650px;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(90deg, rgba(23,50,77,0.78) 0%, rgba(23,50,77,0.48) 40%, rgba(23,50,77,0.18) 100%),
+        url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(620px, 100%);
+      padding: 56px;
+      color: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 20px 0 0;
+      font-size: 18px;
+      color: rgba(255,255,255,0.9);
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-title {
+      max-width: 660px;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(23,50,77,0.05);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(143,185,212,0.28), rgba(43,111,149,0.18));
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: var(--navy);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--white);
+      padding: 22px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      flex: 0 0 46px;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .highlight {
+      background: linear-gradient(180deg, #e9f1f6 0%, #f6f2ea 100%);
+      border-radius: 28px;
+      padding: 34px;
+      border: 1px solid rgba(23,50,77,0.06);
+      box-shadow: var(--shadow);
+    }
+
+    .highlight h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 28px;
+    }
+
+    .highlight ul {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding-bottom: 84px;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, var(--navy), #234e73);
+      color: var(--white);
+      border-radius: 32px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .cta-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+    }
+
+    .footer {
+      padding: 24px 0 42px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-content { padding: 36px 28px; }
+      .stats, .grid-3, .steps { grid-template-columns: 1fr; }
+      .cta-card { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card { min-height: 580px; }
+      .section { padding: 58px 0; }
+      .button { width: 100%; }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span>SWOOP DOG</span>
+      </div>
+      <div class="nav-links">
+        <span style="font-weight:700; color: var(--navy);">📞 954-224-2303</span>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="button button-primary" href="#quote">Get a Quote</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-content">
+            
+            <span class="eyebrow">Clean yards. Easy living.</span>
+            <h1>Keep your home clean with Swoop Dog.</h1>
+            <p>Reliable <strong>pet waste removal service</strong> for busy homeowners who want a fresher, cleaner yard without the hassle.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#quote">Get a Quote</a>
+              <a class="button button-secondary" href="sms:19542242303">Text Us</a>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <strong>Weekly</strong>
+                Fast recurring cleanups
+              </div>
+              <div class="stat">
+                <strong>Simple</strong>
+                Easy scheduling & billing
+              </div>
+              <div class="stat">
+                <strong>Fresh</strong>
+                Cleaner lawn, happier home
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Professional cleanup that makes your yard feel better instantly.</h2>
+          <p>Swoop Dog helps homeowners keep outdoor spaces neat, usable, and guest-ready with dependable recurring service. We offer <strong>weekly, bi-weekly, and monthly</strong> plans to fit your home and lifestyle.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon">🏡</div>
+            <h3>Home-Friendly Service</h3>
+            <p>Designed for residential neighborhoods, family homes, and anyone who wants a cleaner property without adding another chore.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📅</div>
+            <h3>Recurring Visits</h3>
+            <p>Choose a service rhythm that fits your home, whether you need weekly, bi-weekly, or flexible routine maintenance.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">✨</div>
+            <h3>Cleaner Outdoor Living</h3>
+            <p>Enjoy a fresher lawn for pets, kids, gatherings, and everyday use while keeping the yard looking cared for.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-title">
+          <h2>How it works</h2>
+          <p>A simple process that keeps service smooth from the first quote to ongoing cleanups.</p>
+        </div>
+        <div class="steps">
+          <div class="step-list">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div>
+                <h3>Request your quote</h3>
+                <p>Send over your zip code and the number of dogs you have so we can match you with the right plan.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div>
+                <h3>Set up service</h3>
+                <p>We offer simple recurring options (weekly, bi-weekly, or monthly) to keep your yard consistently clean without hassle.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div>
+                <h3>Enjoy a cleaner yard</h3>
+                <p>We handle the dirty work so your outdoor space stays fresher, more comfortable, and easier to enjoy.</p>
+              </div>
+            </div>
+          </div>
+          <div class="highlight">
+            <h3>Why homeowners like it</h3>
+            <p>Cleanups save time, reduce odor, and help your property feel better maintained week after week.</p>
+            <ul>
+              <li>Weekly, bi-weekly, or monthly service options</li>
+              <li>Includes an <strong>odor neutralizing spray</strong> to keep your yard smelling fresh</li>
+              <li><strong>100% no contracts</strong> — cancel anytime</li>
+              <li>We always <strong>secure your gate after service and send you a photo</strong> so you know it’s done and your pets stay safe</li>
+              <li>Less mess before guests come over</li>
+              <li>Better everyday use of the yard</li>
+              <li>Easy recurring setup for busy schedules</li>
+              <li>Clean, modern brand experience customers trust</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" id="quote">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <h2>Get Your Free Quote</h2>
+            <p>Call or text us now for a fast quote.</p>
+          </div>
+          <a class="button button-primary" href="tel:19542242303">📞 Call 954-224-2303</a>
+          <a class="button button-secondary" href="sms:19542242303">💬 Text for Quote</a>
+        </div>
+      </div>
+    </section>
+
+    
+
+    
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>📞 954-224-2303</strong><br/>
+      © 2026 Swoop Dog. Clean yards. Clear routine.
+    </div>
+  </footer>
+</body>
+</html>
